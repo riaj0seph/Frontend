@@ -2,6 +2,7 @@
 import streamlit as st
 from components.sidebar import sidebar
 from components.charts import patient_line_chart, appointment_donut_chart
+from modules.module_36_ui import module_36_page
 
 # All categories and their modules
 CATEGORIES = {
@@ -150,13 +151,17 @@ def patient_dashboard():
 
     # Handle sidebar selection
     if selected != "Dashboard" and selected in CATEGORIES:
-        st.session_state.selected_category = selected
-        st.session_state.view = "category"
-        st.session_state.selected_module = None
+        if st.session_state.get("sidebar_selected") != selected:
+            st.session_state.selected_category = selected
+            st.session_state.view = "category"
+            st.session_state.selected_module = None
+            st.session_state.sidebar_selected = selected
     elif selected == "Dashboard":
-        st.session_state.view = "main"
-        st.session_state.selected_category = None
-        st.session_state.selected_module = None
+        if st.session_state.get("sidebar_selected") != selected:
+            st.session_state.view = "main"
+            st.session_state.selected_category = None
+            st.session_state.selected_module = None
+            st.session_state.sidebar_selected = selected
 
     # ROUTER
     if st.session_state.view == "category":
@@ -361,6 +366,12 @@ def show_module_detail():
     code, name, desc, tables, records = st.session_state.selected_module
     cat_key = st.session_state.selected_category
     
+    # ── Module 36 (F6): Use custom implementation ──
+    if code == "F6":
+        module_36_page()
+        return
+    
+    # ── Generic module detail view for all other modules ──
     # Breadcrumb
     st.markdown(f"Category {cat_key.split('-')[0].strip()} > {name}")
     st.markdown(f"# {name}")
