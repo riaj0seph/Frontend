@@ -1,13 +1,4 @@
 -- ===========================================================================
--- Module 36: Similar Patient Case Retrieval System
--- SQL Equivalent Documentation
--- ===========================================================================
--- NOTE: This module uses MongoDB. The SQL below shows the EQUIVALENT
--- relational database operations for academic reference.
--- ===========================================================================
-
-
--- ===========================================================================
 -- 1. TABLE CREATION (DDL) — Equivalent of collections.py
 -- ===========================================================================
 
