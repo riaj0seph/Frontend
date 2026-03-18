@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 
 # Load .env file from project root
-load_dotenv(os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
+load_dotenv(os.path.join(os.path.dirname(__file__), '..', '..', '..', '.env'))
 
 _client = None
 _db = None
